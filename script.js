@@ -1,3 +1,14 @@
+// Google Login Handler
+function handleGoogleLogin() {
+    // Simulate Google OAuth login
+    // In a real implementation, this would use Google's OAuth 2.0 API
+    alert('Google Login functionality would be integrated here.\n\nIn a production environment, this would:\n1. Redirect to Google OAuth consent screen\n2. Request user permissions\n3. Retrieve user profile information\n4. Auto-fill the form with Google account data');
+
+    // For demo purposes, show the edit form
+    document.getElementById('edit-form').style.display = 'block';
+    document.getElementById('edit-form').scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
 // Student information management
 function updateDisplayFromEdit() {
     const name = document.getElementById('student-name-edit').value.trim();
