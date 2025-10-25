@@ -1042,3 +1042,149 @@ function tryCommand(command, outputId) {
     outputElement.style.display = 'block';
     outputElement.innerHTML = `<span style="color: #4CAF50;">$ ${command}</span>\n${getCommandOutput(command)}`;
 }
+
+// ============================================
+// Interactive Quiz Functions
+// ============================================
+let quizScore = 0;
+let answeredQuestions = new Set();
+const totalQuestions = 4;
+
+function checkAnswer(button, questionNum) {
+    // Prevent re-answering
+    if (answeredQuestions.has(questionNum)) return;
+
+    const isCorrect = button.getAttribute('data-correct') === 'true';
+    const questionDiv = button.closest('.quiz-question');
+    const allOptions = questionDiv.querySelectorAll('.quiz-option');
+    const feedback = questionDiv.querySelector('.quiz-feedback');
+
+    // Disable all options for this question
+    allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+
+    // Mark answer
+    if (isCorrect) {
+        button.style.background = 'rgba(34, 197, 94, 0.8)';
+        button.style.borderColor = '#22c55e';
+        feedback.innerHTML = '✅ Correct!';
+        feedback.style.background = 'rgba(34, 197, 94, 0.3)';
+        feedback.style.display = 'block';
+        quizScore++;
+    } else {
+        button.style.background = 'rgba(239, 68, 68, 0.8)';
+        button.style.borderColor = '#ef4444';
+        // Show correct answer
+        allOptions.forEach(opt => {
+            if (opt.getAttribute('data-correct') === 'true') {
+                opt.style.background = 'rgba(34, 197, 94, 0.8)';
+                opt.style.borderColor = '#22c55e';
+            }
+        });
+        feedback.innerHTML = '❌ Incorrect. The correct answer is highlighted.';
+        feedback.style.background = 'rgba(239, 68, 68, 0.3)';
+        feedback.style.display = 'block';
+    }
+
+    answeredQuestions.add(questionNum);
+
+    // Check if all questions answered
+    if (answeredQuestions.size === totalQuestions) {
+        setTimeout(showScore, 1000);
+    }
+}
+
+function showScore() {
+    const percentage = (quizScore / totalQuestions) * 100;
+    const scoreDiv = document.getElementById('quiz-score');
+    const scoreText = document.getElementById('score-text');
+
+    let message = '';
+    if (percentage === 100) message = 'Perfect! 🌟';
+    else if (percentage >= 75) message = 'Great job! 👏';
+    else if (percentage >= 50) message = 'Good effort! 👍';
+    else message = 'Keep learning! 📚';
+
+    scoreText.innerHTML = `You scored ${quizScore}/${totalQuestions} - ${message}`;
+    scoreDiv.style.display = 'block';
+    scoreDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function resetQuiz() {
+    quizScore = 0;
+    answeredQuestions.clear();
+
+    // Reset all options
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.style.background = 'rgba(255,255,255,0.2)';
+        opt.style.borderColor = 'rgba(255,255,255,0.3)';
+        opt.style.pointerEvents = 'auto';
+    });
+
+    // Hide feedbacks
+    document.querySelectorAll('.quiz-feedback').forEach(f => f.style.display = 'none');
+
+    // Hide score
+    document.getElementById('quiz-score').style.display = 'none';
+
+    // Scroll to quiz start
+    const quizContainer = document.getElementById('quiz-interactive');
+    if (quizContainer) {
+        quizContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function copyQuizCode() {
+    const codeDisplay = document.getElementById('quiz-code-display');
+    const codeText = codeDisplay.textContent;
+
+    // Create a temporary textarea element
+    const textarea = document.createElement('textarea');
+    textarea.value = codeText;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+
+    // Select and copy
+    textarea.select();
+
+    try {
+        document.execCommand('copy');
+        alert('✅ Quiz code copied to clipboard!\n\nPaste it into your presentation and customize:\n- Questions and answers\n- Update totalQuestions variable\n- Change colors and styling');
+    } catch (err) {
+        // Fallback for modern browsers
+        navigator.clipboard.writeText(codeText).then(() => {
+            alert('✅ Quiz code copied to clipboard!\n\nPaste it into your presentation and customize:\n- Questions and answers\n- Update totalQuestions variable\n- Change colors and styling');
+        }).catch(() => {
+            alert('❌ Failed to copy. Please try selecting the code manually.');
+        });
+    }
+
+    document.body.removeChild(textarea);
+}
+
+function switchQuizTab(tabName) {
+    // Hide all tab contents
+    document.querySelectorAll('.quiz-tab-content').forEach(tab => {
+        tab.style.display = 'none';
+    });
+
+    // Remove active class from all tabs
+    const parentTerminal = document.querySelector('.terminal');
+    if (parentTerminal) {
+        parentTerminal.querySelectorAll('.terminal-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+
+        // Add active class to clicked tab
+        const clickedTab = parentTerminal.querySelector(`[data-tab="${tabName}"]`);
+        if (clickedTab) {
+            clickedTab.classList.add('active');
+        }
+    }
+
+    // Show selected tab content
+    const selectedTab = document.getElementById(tabName);
+    if (selectedTab) {
+        selectedTab.style.display = 'block';
+    }
+}

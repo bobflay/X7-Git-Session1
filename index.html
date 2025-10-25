@@ -58,7 +58,7 @@
                         id="student-name-display" 
                         style="font-size: 1.3em; color: #334155; padding: 10px 0; min-height: 1.5em; font-weight: 500;"
                     >
-                        [Your Name Here]
+                        [Ibrahim FLFEIFEL]
                     </div>
                 </div>
                 
@@ -70,7 +70,7 @@
                         id="student-university-display" 
                         style="font-size: 1.3em; color: #334155; padding: 10px 0; min-height: 1.5em; font-weight: 500;"
                     >
-                        [Your University Here]
+                        [AUST]
                     </div>
                 </div>
                 
@@ -82,7 +82,7 @@
                         id="student-linkedin-display" 
                         style="font-size: 1.3em; color: #334155; padding: 10px 0; min-height: 1.5em; font-weight: 500;"
                     >
-                        [Your LinkedIn Profile]
+                        [https://linkedin.com/in/ibrahimfleifel]
                     </div>
                 </div>
                 
@@ -1398,9 +1398,560 @@ Fast-forward
                 <li><strong>release/*:</strong> Prepare releases for deployment</li>
                 <li><strong>hotfix/*:</strong> Quick fixes for production issues</li>
             </ul>
+
+            <h3 style="margin-top: 40px;">Test Your Knowledge: Interactive Quiz</h3>
+
+            <!-- Interactive Quiz Section -->
+            <div class="terminal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2); margin-bottom: 30px;">
+                <div class="terminal-header" style="background: rgba(0,0,0,0.2); border-bottom: 2px solid rgba(255,255,255,0.1);">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-title" style="color: white;">🎯 Branching & Merging Quiz</div>
+                </div>
+                <div class="terminal-content active" style="background: transparent; padding: 20px; color: white;">
+                    <div id="quiz-container">
+                            <!-- Question 1 -->
+                            <div class="quiz-question" data-question="1" style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                                <p style="font-weight: bold; margin-bottom: 15px;">1. What command creates a new branch AND switches to it?</p>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 1)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        A) git branch new-feature
+                                    </button>
+                                    <button class="quiz-option" data-correct="true" onclick="checkAnswer(this, 1)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        B) git checkout -b new-feature
+                                    </button>
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 1)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        C) git merge new-feature
+                                    </button>
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 1)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        D) git add new-feature
+                                    </button>
+                                </div>
+                                <div class="quiz-feedback" style="margin-top: 10px; padding: 10px; border-radius: 5px; display: none;"></div>
+                            </div>
+
+                            <!-- Question 2 -->
+                            <div class="quiz-question" data-question="2" style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                                <p style="font-weight: bold; margin-bottom: 15px;">2. What is the main purpose of using branches in Git?</p>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 2)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        A) To delete old code
+                                    </button>
+                                    <button class="quiz-option" data-correct="true" onclick="checkAnswer(this, 2)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        B) To work on features without affecting the main codebase
+                                    </button>
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 2)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        C) To make commits faster
+                                    </button>
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 2)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        D) To upload files to GitHub
+                                    </button>
+                                </div>
+                                <div class="quiz-feedback" style="margin-top: 10px; padding: 10px; border-radius: 5px; display: none;"></div>
+                            </div>
+
+                            <!-- Question 3 -->
+                            <div class="quiz-question" data-question="3" style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                                <p style="font-weight: bold; margin-bottom: 15px;">3. How do you merge a feature branch into the main branch?</p>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 3)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        A) git branch merge feature-name
+                                    </button>
+                                    <button class="quiz-option" data-correct="true" onclick="checkAnswer(this, 3)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        B) Switch to main, then git merge feature-name
+                                    </button>
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 3)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        C) git push feature-name main
+                                    </button>
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 3)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        D) git add main feature-name
+                                    </button>
+                                </div>
+                                <div class="quiz-feedback" style="margin-top: 10px; padding: 10px; border-radius: 5px; display: none;"></div>
+                            </div>
+
+                            <!-- Question 4 -->
+                            <div class="quiz-question" data-question="4" style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                                <p style="font-weight: bold; margin-bottom: 15px;">4. What should you do after successfully merging a feature branch?</p>
+                                <div style="display: flex; flex-direction: column; gap: 10px;">
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 4)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        A) Create another branch immediately
+                                    </button>
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 4)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        B) Push to a different repository
+                                    </button>
+                                    <button class="quiz-option" data-correct="true" onclick="checkAnswer(this, 4)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        C) Delete the feature branch to keep things clean
+                                    </button>
+                                    <button class="quiz-option" data-correct="false" onclick="checkAnswer(this, 4)" style="background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3); padding: 12px; border-radius: 8px; cursor: pointer; text-align: left; color: white; transition: all 0.3s;">
+                                        D) Rename the main branch
+                                    </button>
+                                </div>
+                                <div class="quiz-feedback" style="margin-top: 10px; padding: 10px; border-radius: 5px; display: none;"></div>
+                            </div>
+                    </div>
+
+                    <!-- Quiz Score -->
+                    <div id="quiz-score" style="text-align: center; margin-top: 20px; padding: 20px; background: rgba(255,255,255,0.2); border-radius: 10px; display: none;">
+                        <h4 style="font-size: 1.3em; margin-bottom: 10px;">🎉 Quiz Complete!</h4>
+                        <p style="font-size: 1.5em; font-weight: bold;" id="score-text"></p>
+                        <button onclick="resetQuiz()" style="background: white; color: #667eea; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: bold; margin-top: 15px; transition: all 0.3s;">
+                            🔄 Try Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Code Implementation Section -->
+            <h3 style="margin-top: 40px;">📝 Quiz Code Implementation</h3>
+            <div class="terminal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                <div class="terminal-header" style="background: rgba(0,0,0,0.2); border-bottom: 2px solid rgba(255,255,255,0.1);">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-title" style="color: white;">💻 View Code</div>
+                </div>
+                <div class="terminal-content active" style="background: transparent; padding: 20px;">
+                    <div style="text-align: right; margin-bottom: 15px;">
+                        <button onclick="copyQuizCode()" style="background: rgba(255,255,255,0.3); color: white; border: 2px solid white; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1em; font-weight: bold; transition: all 0.3s;">
+                            📋 Copy Code to Clipboard
+                        </button>
+                        </div>
+                        <pre id="quiz-code-display" style="background: rgba(0,0,0,0.3); padding: 20px; border-radius: 10px; overflow-x: auto; color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 0.85em; line-height: 1.6; max-height: 500px; overflow-y: auto;"><code>&lt;!-- Interactive Quiz Module --&gt;
+&lt;div class="terminal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"&gt;
+    &lt;div class="terminal-header"&gt;
+        &lt;div class="terminal-title"&gt;🎯 Your Quiz Title&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="terminal-tabs"&gt;
+        &lt;div class="terminal-tab active" data-tab="quiz-interactive"&gt;Interactive Quiz&lt;/div&gt;
+        &lt;div class="terminal-tab" data-tab="quiz-code"&gt;View Code&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="terminal-content"&gt;
+        &lt;div id="quiz-interactive" class="quiz-tab-content"&gt;
+            &lt;!-- Question 1 --&gt;
+            &lt;div class="quiz-question" data-question="1"
+                 style="background: rgba(255,255,255,0.1); padding: 20px;
+                        border-radius: 10px; margin-bottom: 20px;"&gt;
+                &lt;p style="font-weight: bold; margin-bottom: 15px;"&gt;
+                    1. Your question here?
+                &lt;/p&gt;
+                &lt;div style="display: flex; flex-direction: column; gap: 10px;"&gt;
+                    &lt;button class="quiz-option" data-correct="false"
+                            onclick="checkAnswer(this, 1)"
+                            style="background: rgba(255,255,255,0.2);
+                                   border: 2px solid rgba(255,255,255,0.3);
+                                   padding: 12px; border-radius: 8px;
+                                   cursor: pointer; color: white;"&gt;
+                        A) Wrong answer
+                    &lt;/button&gt;
+                    &lt;button class="quiz-option" data-correct="true"
+                            onclick="checkAnswer(this, 1)"
+                            style="background: rgba(255,255,255,0.2);
+                                   border: 2px solid rgba(255,255,255,0.3);
+                                   padding: 12px; border-radius: 8px;
+                                   cursor: pointer; color: white;"&gt;
+                        B) Correct answer
+                    &lt;/button&gt;
+                &lt;/div&gt;
+                &lt;div class="quiz-feedback"
+                     style="margin-top: 10px; padding: 10px;
+                            border-radius: 5px; display: none;"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- Quiz Score --&gt;
+            &lt;div id="quiz-score" style="text-align: center; display: none;"&gt;
+                &lt;h4&gt;🎉 Quiz Complete!&lt;/h4&gt;
+                &lt;p id="score-text"&gt;&lt;/p&gt;
+                &lt;button onclick="resetQuiz()"&gt;🔄 Try Again&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+// Quiz configuration
+let quizScore = 0;
+let answeredQuestions = new Set();
+const totalQuestions = 4; // Update based on number of questions
+
+function checkAnswer(button, questionNum) {
+    if (answeredQuestions.has(questionNum)) return;
+
+    const isCorrect = button.getAttribute('data-correct') === 'true';
+    const questionDiv = button.closest('.quiz-question');
+    const allOptions = questionDiv.querySelectorAll('.quiz-option');
+    const feedback = questionDiv.querySelector('.quiz-feedback');
+
+    allOptions.forEach(opt =&gt; opt.style.pointerEvents = 'none');
+
+    if (isCorrect) {
+        button.style.background = 'rgba(34, 197, 94, 0.8)';
+        button.style.borderColor = '#22c55e';
+        feedback.innerHTML = '✅ Correct!';
+        feedback.style.background = 'rgba(34, 197, 94, 0.3)';
+        feedback.style.display = 'block';
+        quizScore++;
+    } else {
+        button.style.background = 'rgba(239, 68, 68, 0.8)';
+        button.style.borderColor = '#ef4444';
+        allOptions.forEach(opt =&gt; {
+            if (opt.getAttribute('data-correct') === 'true') {
+                opt.style.background = 'rgba(34, 197, 94, 0.8)';
+                opt.style.borderColor = '#22c55e';
+            }
+        });
+        feedback.innerHTML = '❌ Incorrect. The correct answer is highlighted.';
+        feedback.style.background = 'rgba(239, 68, 68, 0.3)';
+        feedback.style.display = 'block';
+    }
+
+    answeredQuestions.add(questionNum);
+    if (answeredQuestions.size === totalQuestions) {
+        setTimeout(showScore, 1000);
+    }
+}
+
+function showScore() {
+    const percentage = (quizScore / totalQuestions) * 100;
+    const scoreDiv = document.getElementById('quiz-score');
+    const scoreText = document.getElementById('score-text');
+
+    let message = '';
+    if (percentage === 100) message = 'Perfect! 🌟';
+    else if (percentage &gt;= 75) message = 'Great job! 👏';
+    else if (percentage &gt;= 50) message = 'Good effort! 👍';
+    else message = 'Keep learning! 📚';
+
+    scoreText.innerHTML = `You scored ${quizScore}/${totalQuestions} - ${message}`;
+    scoreDiv.style.display = 'block';
+}
+
+function resetQuiz() {
+    quizScore = 0;
+    answeredQuestions.clear();
+    document.querySelectorAll('.quiz-option').forEach(opt =&gt; {
+        opt.style.background = 'rgba(255,255,255,0.2)';
+        opt.style.borderColor = 'rgba(255,255,255,0.3)';
+        opt.style.pointerEvents = 'auto';
+    });
+    document.querySelectorAll('.quiz-feedback').forEach(f =&gt;
+        f.style.display = 'none'
+    );
+    document.getElementById('quiz-score').style.display = 'none';
+}
+
+function switchQuizTab(tabName) {
+    document.querySelectorAll('.quiz-tab-content').forEach(tab =&gt;
+        tab.style.display = 'none'
+    );
+    document.getElementById(tabName).style.display = 'block';
+}
+&lt;/script&gt;</code></pre>
+                        <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 8px; margin-top: 20px; color: white;">
+                            <h4 style="margin-bottom: 10px;">📝 Customization Guide:</h4>
+                            <ul style="line-height: 1.8;">
+                                <li>Update <code>totalQuestions</code> to match your question count</li>
+                                <li>Add more questions by copying the question div structure</li>
+                                <li>Change <code>data-correct="true"</code> to mark correct answers</li>
+                                <li>Customize colors by modifying the gradient and rgba values</li>
+                                <li>Each question needs a unique <code>data-question</code> number</li>
+                            </ul>
+                        </div>
+                </div>
+            </div>
+
+            <script>
+            // Quiz functionality
+            let quizScore = 0;
+            let answeredQuestions = new Set();
+            const totalQuestions = 4;
+
+            function checkAnswer(button, questionNum) {
+                if (answeredQuestions.has(questionNum)) return;
+
+                const isCorrect = button.getAttribute('data-correct') === 'true';
+                const questionDiv = button.closest('.quiz-question');
+                const allOptions = questionDiv.querySelectorAll('.quiz-option');
+                const feedback = questionDiv.querySelector('.quiz-feedback');
+
+                allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+
+                if (isCorrect) {
+                    button.style.background = 'rgba(34, 197, 94, 0.8)';
+                    button.style.borderColor = '#22c55e';
+                    feedback.innerHTML = '✅ Correct!';
+                    feedback.style.background = 'rgba(34, 197, 94, 0.3)';
+                    feedback.style.display = 'block';
+                    quizScore++;
+                } else {
+                    button.style.background = 'rgba(239, 68, 68, 0.8)';
+                    button.style.borderColor = '#ef4444';
+                    allOptions.forEach(opt => {
+                        if (opt.getAttribute('data-correct') === 'true') {
+                            opt.style.background = 'rgba(34, 197, 94, 0.8)';
+                            opt.style.borderColor = '#22c55e';
+                        }
+                    });
+                    feedback.innerHTML = '❌ Incorrect. The correct answer is highlighted.';
+                    feedback.style.background = 'rgba(239, 68, 68, 0.3)';
+                    feedback.style.display = 'block';
+                }
+
+                answeredQuestions.add(questionNum);
+                if (answeredQuestions.size === totalQuestions) {
+                    setTimeout(showScore, 1000);
+                }
+            }
+
+            function showScore() {
+                const percentage = (quizScore / totalQuestions) * 100;
+                const scoreDiv = document.getElementById('quiz-score');
+                const scoreText = document.getElementById('score-text');
+
+                let message = '';
+                if (percentage === 100) message = 'Perfect! 🌟';
+                else if (percentage >= 75) message = 'Great job! 👏';
+                else if (percentage >= 50) message = 'Good effort! 👍';
+                else message = 'Keep learning! 📚';
+
+                scoreText.innerHTML = `You scored ${quizScore}/${totalQuestions} - ${message}`;
+                scoreDiv.style.display = 'block';
+            }
+
+            function resetQuiz() {
+                quizScore = 0;
+                answeredQuestions.clear();
+                document.querySelectorAll('.quiz-option').forEach(opt => {
+                    opt.style.background = 'rgba(255,255,255,0.2)';
+                    opt.style.borderColor = 'rgba(255,255,255,0.3)';
+                    opt.style.pointerEvents = 'auto';
+                });
+                document.querySelectorAll('.quiz-feedback').forEach(f => {
+                    f.style.display = 'none';
+                });
+                document.getElementById('quiz-score').style.display = 'none';
+            }
+
+            function copyQuizCode() {
+                const codeText = document.getElementById('quiz-code-display').textContent;
+                navigator.clipboard.writeText(codeText).then(() => {
+                    alert('Code copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy code:', err);
+                });
+            }
+            </script>
         </div>
 
-        <!-- Slide 11: Remote Repositories -->
+        <!-- Slide 11: Pull Requests -->
+        <div class="slide">
+            <h2>Pull Requests (PRs)</h2>
+
+            <h3>What is a Pull Request?</h3>
+            <p>A <strong>Pull Request</strong> (PR) is a way to propose changes to a codebase. It's called "pull request" because you're asking the project maintainer to pull your changes into their repository.</p>
+
+            <div style="background: #f1f5f9; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <h4>🎯 Why Pull Requests Are Important:</h4>
+                <ul>
+                    <li><strong>Code Review:</strong> Team members can review your code before it's merged</li>
+                    <li><strong>Discussion:</strong> Discuss implementation details and suggest improvements</li>
+                    <li><strong>Quality Control:</strong> Catch bugs, security issues, and maintain code standards</li>
+                    <li><strong>Documentation:</strong> Create a permanent record of what changed and why</li>
+                    <li><strong>Collaboration:</strong> Essential for team projects and open source contributions</li>
+                </ul>
+            </div>
+
+            <h3>Real-Life Analogy:</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📝 Essay Review</h4>
+                    <p><strong>Your draft:</strong> Code changes in your branch</p>
+                    <p><strong>Ask for review:</strong> Create a pull request</p>
+                    <p><strong>Teacher feedback:</strong> Code review comments</p>
+                    <p><strong>Revisions:</strong> Update your code based on feedback</p>
+                    <p><strong>Final grade:</strong> PR approved and merged</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🏗️ Building Permit</h4>
+                    <p><strong>Your plans:</strong> Proposed code changes</p>
+                    <p><strong>Submit permit:</strong> Open a pull request</p>
+                    <p><strong>Inspector review:</strong> Team reviews your code</p>
+                    <p><strong>Make changes:</strong> Address review feedback</p>
+                    <p><strong>Approval:</strong> Merge into main branch</p>
+                </div>
+            </div>
+
+            <h3>How Pull Requests Work (GitHub/GitLab/Bitbucket):</h3>
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+                <h4>📋 The Pull Request Workflow:</h4>
+                <ol style="margin-left: 20px;">
+                    <li><strong>Create a branch:</strong> Make your changes in a separate branch</li>
+                    <li><strong>Push to remote:</strong> Upload your branch to GitHub/GitLab</li>
+                    <li><strong>Open PR:</strong> Create a pull request on the platform</li>
+                    <li><strong>Describe changes:</strong> Explain what you did and why</li>
+                    <li><strong>Request reviewers:</strong> Ask team members to review</li>
+                    <li><strong>Code review:</strong> Team reviews and comments on your code</li>
+                    <li><strong>Address feedback:</strong> Make requested changes and push updates</li>
+                    <li><strong>Approval:</strong> Reviewers approve the changes</li>
+                    <li><strong>Merge:</strong> PR is merged into the main branch</li>
+                    <li><strong>Delete branch:</strong> Clean up your feature branch</li>
+                </ol>
+            </div>
+
+            <h3>Creating a Pull Request - Step by Step:</h3>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-title">Pull Request Workflow</div>
+                </div>
+                <div class="terminal-tabs">
+                    <div class="terminal-tab active" data-tab="demo11a">Demo</div>
+                    <div class="terminal-tab" data-tab="interactive11a">Try It</div>
+                </div>
+                <div class="terminal-content active">
+                    <div class="terminal-body" id="demo11a" style="display: block;">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command" style="cursor: pointer;">git checkout -b feature/add-dark-mode</span>
+                            <span class="terminal-comment"># Create and switch to new branch</span>
+                            <div class="terminal-output" style="display: none;">Switched to a new branch 'feature/add-dark-mode'</div>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command" style="cursor: pointer;">git add .</span>
+                            <span class="terminal-comment"># Stage your changes</span>
+                            <div class="terminal-output" style="display: none;"></div>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command" style="cursor: pointer;">git commit -m "Add dark mode toggle feature"</span>
+                            <span class="terminal-comment"># Commit your changes</span>
+                            <div class="terminal-output" style="display: none;">[feature/add-dark-mode 7a8b9c0] Add dark mode toggle feature
+ 3 files changed, 125 insertions(+), 8 deletions(-)</div>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command" style="cursor: pointer;">git push origin feature/add-dark-mode</span>
+                            <span class="terminal-comment"># Push branch to remote (GitHub/GitLab)</span>
+                            <div class="terminal-output" style="display: none;">Enumerating objects: 12, done.
+Counting objects: 100% (12/12), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (8/8), done.
+Writing objects: 100% (8/8), 2.45 KiB | 2.45 MiB/s, done.
+Total 8 (delta 4), reused 0 (delta 0)
+remote:
+remote: Create a pull request for 'feature/add-dark-mode' on GitHub:
+remote:   https://github.com/username/repo/pull/new/feature/add-dark-mode
+remote:
+To github.com:username/repo.git
+ * [new branch]      feature/add-dark-mode -> feature/add-dark-mode</div>
+                        </div>
+                    </div>
+                    <div class="interactive-terminal" id="interactive11a" style="display: none;">
+                        <div class="custom-terminal">
+                            <div class="terminal-output-area"></div>
+                            <div class="terminal-input-line">
+                                <span class="terminal-prompt">$</span>
+                                <input type="text" class="terminal-input" placeholder="Type a command..." autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                <h4>🌐 After Pushing - On GitHub/GitLab:</h4>
+                <ol style="margin-left: 20px;">
+                    <li>Visit your repository on GitHub/GitLab/Bitbucket</li>
+                    <li>Click "Compare & pull request" or "Create pull request" button</li>
+                    <li>Fill in the PR template:
+                        <ul style="margin-top: 10px;">
+                            <li><strong>Title:</strong> Brief summary (e.g., "Add dark mode toggle")</li>
+                            <li><strong>Description:</strong> What changed, why, and how to test it</li>
+                            <li><strong>Screenshots:</strong> If UI changed, include before/after images</li>
+                            <li><strong>Related issues:</strong> Link to any related tickets</li>
+                        </ul>
+                    </li>
+                    <li>Select reviewers from your team</li>
+                    <li>Add labels (e.g., "enhancement", "bug fix", "documentation")</li>
+                    <li>Click "Create pull request"</li>
+                </ol>
+            </div>
+
+            <h3>Pull Request Best Practices:</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>✍️ Write Clear Descriptions</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Explain what and why</li>
+                        <li>List testing steps</li>
+                        <li>Mention breaking changes</li>
+                        <li>Include screenshots for UI</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>📦 Keep PRs Small</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>One feature per PR</li>
+                        <li>Easier to review</li>
+                        <li>Faster to merge</li>
+                        <li>Easier to revert if needed</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>💬 Be Responsive</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Reply to comments promptly</li>
+                        <li>Address feedback quickly</li>
+                        <li>Ask questions if unclear</li>
+                        <li>Mark resolved discussions</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>✅ Ensure Quality</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Run all tests before submitting</li>
+                        <li>Check for linting errors</li>
+                        <li>Update documentation</li>
+                        <li>Resolve merge conflicts</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Reviewing a Pull Request:</h3>
+            <div style="background: #f1f5f9; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h4>🔍 As a Reviewer, Check For:</h4>
+                <ul>
+                    <li><strong>Functionality:</strong> Does the code do what it's supposed to?</li>
+                    <li><strong>Code Quality:</strong> Is it readable, maintainable, and well-structured?</li>
+                    <li><strong>Tests:</strong> Are there tests? Do they cover edge cases?</li>
+                    <li><strong>Performance:</strong> Any potential bottlenecks or inefficiencies?</li>
+                    <li><strong>Security:</strong> Any vulnerabilities or sensitive data exposed?</li>
+                    <li><strong>Documentation:</strong> Is the code and functionality documented?</li>
+                </ul>
+            </div>
+
+            <div style="background: #dcfce7; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #22c55e;">
+                <h4>💡 Pro Tips:</h4>
+                <ul>
+                    <li><strong>Draft PRs:</strong> Use "Draft" mode for work-in-progress to get early feedback</li>
+                    <li><strong>Link Issues:</strong> Use keywords like "Fixes #123" to auto-close related issues</li>
+                    <li><strong>CI/CD Integration:</strong> Automated tests run on every PR before merge</li>
+                    <li><strong>Protected Branches:</strong> Require PR reviews before merging to main/master</li>
+                    <li><strong>Squash Commits:</strong> Combine multiple commits into one clean commit when merging</li>
+                </ul>
+            </div>
+
+            <div class="interactive-demo">
+                <div class="demo-title">🚀 Pull Requests are the cornerstone of modern collaborative development - they ensure code quality and knowledge sharing across the team!</div>
+            </div>
+        </div>
+
+        <!-- Slide 12: Remote Repositories -->
         <div class="slide">
             <h2>Remote Repositories</h2>
             
@@ -1482,7 +2033,7 @@ Already up to date.</div>
             </ul>
         </div>
 
-        <!-- Slide 12: Best Practices -->
+        <!-- Slide 13: Best Practices -->
         <div class="slide">
             <h2>Git Best Practices</h2>
             
@@ -1513,7 +2064,7 @@ Already up to date.</div>
             </ul>
         </div>
 
-        <!-- Slide 13: Troubleshooting -->
+        <!-- Slide 14: Troubleshooting -->
         <div class="slide">
             <h2>Common Issues & Solutions</h2>
             
@@ -1576,7 +2127,7 @@ M	index.html</div>
             </ul>
         </div>
 
-        <!-- Slide 14: Commits & Branch Management -->
+        <!-- Slide 15: Commits & Branch Management -->
         <div class="slide">
             <h2>Git Commits & Branch Management</h2>
 
@@ -1804,7 +2355,7 @@ b3c4d5e Initial commit</div>
             </div>
         </div>
 
-        <!-- Slide 15: Next Steps -->
+        <!-- Slide 16: Next Steps -->
         <div class="slide">
             <h2>Next Steps</h2>
             
@@ -1834,7 +2385,7 @@ b3c4d5e Initial commit</div>
     </div>
 
     <div class="slide-counter">
-        <span id="current-slide">1</span> / <span id="total-slides">15</span>
+        <span id="current-slide">1</span> / <span id="total-slides">16</span>
     </div>
 
     <div class="navigation">
