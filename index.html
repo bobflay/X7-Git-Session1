@@ -1951,7 +1951,1497 @@ To github.com:username/repo.git
             </div>
         </div>
 
-        <!-- Slide 12: Remote Repositories -->
+        <!-- Slide 12: Git Rebase -->
+        <div class="slide">
+            <h2>Git Rebase</h2>
+
+            <h3>What is Rebase?</h3>
+            <p><strong>Rebase</strong> is a way to integrate changes from one branch into another by moving or replaying commits onto a new base. Unlike merge, which creates a merge commit, rebase rewrites commit history to create a linear, cleaner history.</p>
+
+            <div style="background: #f1f5f9; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <h4>🎯 Why Use Rebase?</h4>
+                <ul>
+                    <li><strong>Clean History:</strong> Creates a linear, easy-to-follow commit history</li>
+                    <li><strong>No Merge Commits:</strong> Avoids cluttering history with merge commits</li>
+                    <li><strong>Easy to Review:</strong> Makes pull requests cleaner and easier to review</li>
+                    <li><strong>Easier to Debug:</strong> Linear history makes git bisect and git log more useful</li>
+                </ul>
+            </div>
+
+            <h3>Real-Life Analogy:</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📚 Reorganizing Book Chapters</h4>
+                    <p><strong>Original story:</strong> Your commit history</p>
+                    <p><strong>New chapters added:</strong> Changes in main branch</p>
+                    <p><strong>Rewrite your chapters:</strong> Rebase your commits</p>
+                    <p><strong>Result:</strong> Your chapters now build on the new storyline</p>
+                    <p>Instead of adding a note "merged with new chapters," you rewrite as if you always had the new chapters</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🏗️ Building on Updated Foundation</h4>
+                    <p><strong>Foundation improved:</strong> Main branch updated</p>
+                    <p><strong>Your construction:</strong> Your feature branch</p>
+                    <p><strong>Rebuild on new foundation:</strong> Rebase</p>
+                    <p><strong>Result:</strong> Your work sits on the latest foundation</p>
+                    <p>It's as if you started building on the improved foundation from day one</p>
+                </div>
+            </div>
+
+            <h3>Rebase vs Merge:</h3>
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h4>🔀 Merge</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Preserves complete history</li>
+                            <li>Creates a merge commit</li>
+                            <li>Non-destructive operation</li>
+                            <li>Shows when branches were merged</li>
+                            <li>Can create complex history graph</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>📝 Rebase</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Creates linear history</li>
+                            <li>No merge commits</li>
+                            <li>Rewrites commit history</li>
+                            <li>Cleaner, easier to follow</li>
+                            <li>Simplifies project timeline</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Basic Rebase Workflow:</h3>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-title">Git Rebase</div>
+                </div>
+                <div class="terminal-tabs">
+                    <div class="terminal-tab active" data-tab="demo12a">Demo</div>
+                    <div class="terminal-tab" data-tab="interactive12a">Try It</div>
+                </div>
+                <div class="terminal-content active">
+                    <div class="terminal-body" id="demo12a" style="display: block;">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command" style="cursor: pointer;">git checkout feature-branch</span>
+                            <span class="terminal-comment"># Switch to your feature branch</span>
+                            <div class="terminal-output" style="display: none;">Switched to branch 'feature-branch'</div>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command" style="cursor: pointer;">git rebase main</span>
+                            <span class="terminal-comment"># Rebase onto main branch</span>
+                            <div class="terminal-output" style="display: none;">Successfully rebased and updated refs/heads/feature-branch.</div>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command" style="cursor: pointer;">git log --oneline --graph</span>
+                            <span class="terminal-comment"># View linear history</span>
+                            <div class="terminal-output" style="display: none;">* a1b2c3d (HEAD -> feature-branch) Add new feature
+* d4e5f6g Update documentation
+* g7h8i9j (main) Latest main branch commit
+* j0k1l2m Previous commit</div>
+                        </div>
+                    </div>
+                    <div class="terminal-body interactive" id="interactive12a" style="display: none;">
+                        <div class="interactive-output" style="color: #888; font-style: italic;">Type commands above and press Enter...</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Interactive Rebase:</h3>
+            <p>Interactive rebase (<code>git rebase -i</code>) lets you modify commits while rebasing:</p>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-title">Interactive Rebase</div>
+                </div>
+                <div class="terminal-content active">
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">git rebase -i HEAD~3</span>
+                            <span class="terminal-comment"># Rebase last 3 commits interactively</span>
+                        </div>
+                        <div class="terminal-output" style="display: block; margin-top: 10px; color: #64748b;">pick a1b2c3d Add login feature
+pick d4e5f6g Fix typo
+pick g7h8i9j Update tests
+
+# Commands:
+# p, pick = use commit
+# r, reword = use commit, but edit message
+# e, edit = use commit, but stop for amending
+# s, squash = combine with previous commit
+# f, fixup = like squash, but discard message
+# d, drop = remove commit</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                <h4>📋 Common Interactive Rebase Actions:</h4>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Squash:</strong> Combine multiple commits into one</li>
+                    <li><strong>Reword:</strong> Change a commit message</li>
+                    <li><strong>Edit:</strong> Modify the commit content</li>
+                    <li><strong>Drop:</strong> Remove a commit entirely</li>
+                    <li><strong>Reorder:</strong> Change the order of commits</li>
+                </ul>
+            </div>
+
+            <h3>Handling Rebase Conflicts:</h3>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-title">Resolving Rebase Conflicts</div>
+                </div>
+                <div class="terminal-content active">
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">git rebase main</span>
+                        </div>
+                        <div class="terminal-output" style="display: block; color: #dc2626;">CONFLICT (content): Merge conflict in app.js
+error: could not apply a1b2c3d... Add new feature
+Resolve all conflicts manually, mark them as resolved with
+"git add/rm &lt;conflicted_files&gt;", then run "git rebase --continue".</div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">git status</span>
+                            <span class="terminal-comment"># Check conflicted files</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-comment"># Fix conflicts in your editor, then:</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">git add app.js</span>
+                            <span class="terminal-comment"># Mark as resolved</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">git rebase --continue</span>
+                            <span class="terminal-comment"># Continue rebasing</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-comment"># Or to abort:</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">git rebase --abort</span>
+                            <span class="terminal-comment"># Cancel rebase and return to original state</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Golden Rules of Rebasing:</h3>
+            <div style="background: #fee2e2; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #dc2626;">
+                <h4>⚠️ Important Warning:</h4>
+                <p style="font-size: 1.1em; margin-bottom: 15px;"><strong>Never rebase commits that have been pushed to a public/shared branch!</strong></p>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Why?</strong> Rebase rewrites history, which can cause problems for others who have based work on your commits</li>
+                    <li><strong>Safe:</strong> Rebasing your local feature branch before pushing</li>
+                    <li><strong>Safe:</strong> Rebasing your feature branch that only you work on</li>
+                    <li><strong>Dangerous:</strong> Rebasing main/master or shared branches</li>
+                    <li><strong>Dangerous:</strong> Rebasing commits that others have already pulled</li>
+                </ul>
+            </div>
+
+            <h3>When to Use Rebase:</h3>
+            <div class="feature-grid">
+                <div class="feature-card" style="background: #d1fae5; border-left: 4px solid #10b981;">
+                    <h4>✅ Good Use Cases</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Clean up local commits before pushing</li>
+                        <li>Update feature branch with main changes</li>
+                        <li>Squash small commits into logical units</li>
+                        <li>Fix commit messages or order</li>
+                        <li>Create clean PR history</li>
+                    </ul>
+                </div>
+                <div class="feature-card" style="background: #fee2e2; border-left: 4px solid #dc2626;">
+                    <h4>❌ Avoid Rebase When</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Commits are already pushed and shared</li>
+                        <li>Others are working on the same branch</li>
+                        <li>You want to preserve exact history</li>
+                        <li>Working on main/master branch</li>
+                        <li>Unsure about the consequences</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Rebase Before Pull Request:</h3>
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+                <h4>🚀 Common Workflow:</h4>
+                <ol style="margin-left: 20px;">
+                    <li>Create feature branch and make commits</li>
+                    <li>Main branch has new commits while you work</li>
+                    <li>Before creating PR: <code>git rebase main</code></li>
+                    <li>Resolve any conflicts</li>
+                    <li>Force push to your feature branch: <code>git push --force-with-lease</code></li>
+                    <li>Create clean pull request with linear history</li>
+                </ol>
+            </div>
+
+            <div class="interactive-demo">
+                <div class="demo-title">🎯 Rebase is a powerful tool for maintaining clean history - use it wisely on your own branches, but never on shared history!</div>
+            </div>
+        </div>
+
+        <!-- Slide 13: JSON (JavaScript Object Notation) -->
+        <div class="slide">
+            <h2>JSON (JavaScript Object Notation)</h2>
+
+            <h3>What is JSON?</h3>
+            <p><strong>JSON</strong> (JavaScript Object Notation) is a lightweight, text-based data format used to store and exchange data between systems. It's human-readable and easy for computers to parse and generate.</p>
+
+            <div style="background: #f1f5f9; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <h4>🎯 Why JSON is Important:</h4>
+                <ul>
+                    <li><strong>Universal:</strong> Works with virtually every programming language</li>
+                    <li><strong>Simple:</strong> Easy to read and write for both humans and machines</li>
+                    <li><strong>Lightweight:</strong> Minimal syntax means smaller file sizes</li>
+                    <li><strong>Web Standard:</strong> The de facto standard for web APIs and data exchange</li>
+                    <li><strong>Flexible:</strong> Can represent complex nested data structures</li>
+                </ul>
+            </div>
+
+            <h3>Real-Life Analogy:</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📋 Restaurant Menu</h4>
+                    <p><strong>Menu structure:</strong> Like JSON's key-value pairs</p>
+                    <p><strong>Categories:</strong> Objects (appetizers, mains, desserts)</p>
+                    <p><strong>Items list:</strong> Arrays of dishes</p>
+                    <p><strong>Item details:</strong> Name, price, description (nested objects)</p>
+                    <p>Just as a menu organizes information in a readable format, JSON structures data in a clear, organized way</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📦 Shipping Label</h4>
+                    <p><strong>Recipient info:</strong> Name, address (key-value pairs)</p>
+                    <p><strong>Package contents:</strong> List of items (array)</p>
+                    <p><strong>Structured data:</strong> Easy to scan and process</p>
+                    <p><strong>Universal format:</strong> Any shipping company can read it</p>
+                    <p>JSON is like a standardized label that any system can understand</p>
+                </div>
+            </div>
+
+            <h3>JSON Syntax and Data Types:</h3>
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+                <h4>📝 JSON Data Types:</h4>
+                <ul style="margin-left: 20px;">
+                    <li><strong>String:</strong> Text in double quotes: <code>"Hello World"</code></li>
+                    <li><strong>Number:</strong> Integer or decimal: <code>42</code>, <code>3.14</code></li>
+                    <li><strong>Boolean:</strong> True or false: <code>true</code>, <code>false</code></li>
+                    <li><strong>Null:</strong> Empty value: <code>null</code></li>
+                    <li><strong>Object:</strong> Key-value pairs in curly braces: <code>{"name": "John"}</code></li>
+                    <li><strong>Array:</strong> Ordered list in square brackets: <code>[1, 2, 3]</code></li>
+                </ul>
+            </div>
+
+            <h3>Basic JSON Example:</h3>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-title">simple-user.json</div>
+                </div>
+                <div class="terminal-content active">
+                    <div class="terminal-body">
+                        <pre style="margin: 0; color: #64748b;">{
+  "name": "Alice Johnson",
+  "age": 28,
+  "email": "alice@example.com",
+  "isActive": true,
+  "department": "Engineering"
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Complex JSON Example:</h3>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-title">user-profile.json</div>
+                </div>
+                <div class="terminal-content active">
+                    <div class="terminal-body">
+                        <pre style="margin: 0; color: #64748b;">{
+  "user": {
+    "id": 12345,
+    "name": "Alice Johnson",
+    "email": "alice@example.com",
+    "isActive": true,
+    "roles": ["developer", "reviewer", "mentor"],
+    "address": {
+      "street": "123 Main St",
+      "city": "San Francisco",
+      "state": "CA",
+      "zipCode": "94102",
+      "country": "USA"
+    },
+    "projects": [
+      {
+        "id": 1,
+        "name": "Website Redesign",
+        "status": "in-progress",
+        "startDate": "2024-01-15",
+        "team": ["Alice", "Bob", "Charlie"]
+      },
+      {
+        "id": 2,
+        "name": "Mobile App",
+        "status": "completed",
+        "startDate": "2023-09-01",
+        "endDate": "2024-02-28",
+        "team": ["Alice", "Diana"]
+      }
+    ],
+    "preferences": {
+      "theme": "dark",
+      "notifications": true,
+      "language": "en-US"
+    },
+    "lastLogin": "2024-03-15T14:30:00Z"
+  }
+}</pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>JSON Syntax Rules:</h3>
+            <div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                <h4>✅ Important Rules:</h4>
+                <ul style="margin-left: 20px;">
+                    <li><strong>Keys must be strings:</strong> Always use double quotes: <code>"name"</code> not <code>name</code></li>
+                    <li><strong>Strings use double quotes:</strong> <code>"text"</code> not <code>'text'</code></li>
+                    <li><strong>No trailing commas:</strong> Last item in object/array has no comma</li>
+                    <li><strong>Case sensitive:</strong> <code>"Name"</code> and <code>"name"</code> are different</li>
+                    <li><strong>No comments:</strong> JSON doesn't support comments (unlike JavaScript)</li>
+                    <li><strong>No undefined:</strong> Use <code>null</code> for empty values</li>
+                </ul>
+            </div>
+
+            <h3>Common JSON Mistakes:</h3>
+            <div class="feature-grid">
+                <div class="feature-card" style="background: #fee2e2; border-left: 4px solid #dc2626;">
+                    <h4>❌ Invalid JSON</h4>
+                    <pre style="font-size: 0.85em; margin: 10px 0; background: #fff; padding: 10px; border-radius: 5px;">{
+  name: "Alice",          // Missing quotes on key
+  'age': 28,              // Single quotes
+  "isActive": true,       // Trailing comma ↓
+}</pre>
+                </div>
+                <div class="feature-card" style="background: #d1fae5; border-left: 4px solid #10b981;">
+                    <h4>✅ Valid JSON</h4>
+                    <pre style="font-size: 0.85em; margin: 10px 0; background: #fff; padding: 10px; border-radius: 5px;">{
+  "name": "Alice",
+  "age": 28,
+  "isActive": true
+}</pre>
+                </div>
+            </div>
+
+            <h3>Working with JSON:</h3>
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+                <h4>💻 In JavaScript:</h4>
+                <div class="terminal">
+                    <div class="terminal-header">
+                        <div class="terminal-button close"></div>
+                        <div class="terminal-button minimize"></div>
+                        <div class="terminal-button maximize"></div>
+                        <div class="terminal-title">JavaScript</div>
+                    </div>
+                    <div class="terminal-content active">
+                        <div class="terminal-body">
+                            <pre style="margin: 0; color: #64748b;">// Parse JSON string to JavaScript object
+const jsonString = '{"name": "Alice", "age": 28}';
+const user = JSON.parse(jsonString);
+console.log(user.name); // "Alice"
+
+// Convert JavaScript object to JSON string
+const person = {name: "Bob", age: 35};
+const json = JSON.stringify(person);
+console.log(json); // '{"name":"Bob","age":35}'
+
+// Pretty print with indentation
+const prettyJson = JSON.stringify(person, null, 2);
+console.log(prettyJson);
+// {
+//   "name": "Bob",
+//   "age": 35
+// }</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Common Uses of JSON:</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>🌐 Web APIs</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>RESTful API responses</li>
+                        <li>Sending data to servers</li>
+                        <li>Microservices communication</li>
+                        <li>WebSocket messages</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>⚙️ Configuration Files</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>package.json (Node.js)</li>
+                        <li>tsconfig.json (TypeScript)</li>
+                        <li>settings.json (VS Code)</li>
+                        <li>App configuration files</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>💾 Data Storage</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>NoSQL databases (MongoDB)</li>
+                        <li>Local storage in browsers</li>
+                        <li>Cache data</li>
+                        <li>Export/import data</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>📱 Mobile Apps</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>API communication</li>
+                        <li>App settings</li>
+                        <li>Data synchronization</li>
+                        <li>Push notifications payload</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>JSON in Different Languages:</h3>
+            <div style="background: #f1f5f9; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <h4>🔧 Language Support:</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                    <div>
+                        <h5>Python:</h5>
+                        <pre style="font-size: 0.85em; background: #fff; padding: 10px; border-radius: 5px;">import json
+
+# Parse JSON
+data = json.loads('{"name": "Alice"}')
+
+# Create JSON
+json_str = json.dumps({"age": 28})</pre>
+                    </div>
+                    <div>
+                        <h5>Java:</h5>
+                        <pre style="font-size: 0.85em; background: #fff; padding: 10px; border-radius: 5px;">// Using Gson library
+Gson gson = new Gson();
+
+// Parse JSON
+User user = gson.fromJson(json, User.class);
+
+// Create JSON
+String json = gson.toJson(userObject);</pre>
+                    </div>
+                </div>
+            </div>
+
+            <h3>JSON vs Other Formats:</h3>
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr style="background: #e0f2fe;">
+                        <th style="padding: 12px; text-align: left; border: 1px solid #bae6fd;">Format</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #bae6fd;">Pros</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #bae6fd;">Cons</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;"><strong>JSON</strong></td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Simple, lightweight, widely supported</td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">No comments, verbose for large data</td>
+                    </tr>
+                    <tr style="background: #f0f9ff;">
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;"><strong>XML</strong></td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Supports attributes, schemas, namespaces</td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Verbose, harder to read</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;"><strong>YAML</strong></td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Human-friendly, supports comments</td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Whitespace-sensitive, complex parsing</td>
+                    </tr>
+                    <tr style="background: #f0f9ff;">
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;"><strong>CSV</strong></td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Simple, compact for tabular data</td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">No nested structures, limited types</td>
+                    </tr>
+                </table>
+            </div>
+
+            <h3>JSON Best Practices:</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>✍️ Naming Conventions</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Use camelCase for keys</li>
+                        <li>Be consistent throughout</li>
+                        <li>Use descriptive names</li>
+                        <li>Avoid special characters</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>📐 Structure</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Keep it flat when possible</li>
+                        <li>Use arrays for lists</li>
+                        <li>Group related data in objects</li>
+                        <li>Validate with JSON Schema</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>🔒 Security</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Validate input before parsing</li>
+                        <li>Don't store sensitive data</li>
+                        <li>Use HTTPS for transmission</li>
+                        <li>Sanitize user-generated content</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h4>⚡ Performance</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Minimize nesting depth</li>
+                        <li>Use shorter key names for large data</li>
+                        <li>Consider compression (gzip)</li>
+                        <li>Cache parsed results</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Tools for Working with JSON:</h3>
+            <div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                <h4>🛠️ Useful Tools:</h4>
+                <ul style="margin-left: 20px;">
+                    <li><strong>JSONLint:</strong> Validate and format JSON online</li>
+                    <li><strong>Postman:</strong> Test APIs and inspect JSON responses</li>
+                    <li><strong>jq:</strong> Command-line JSON processor</li>
+                    <li><strong>VS Code:</strong> Built-in JSON validation and formatting</li>
+                    <li><strong>Chrome DevTools:</strong> Inspect network requests/responses</li>
+                    <li><strong>JSON Schema:</strong> Define and validate JSON structure</li>
+                </ul>
+            </div>
+
+            <h3>Try It Yourself - JSON Validator:</h3>
+            <div style="background: #ffffff; padding: 30px; border-radius: 10px; margin: 20px 0; border: 2px solid #e0f2fe;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h4 style="margin-bottom: 10px;">✏️ Input JSON:</h4>
+                        <textarea id="jsonInput" style="width: 100%; height: 300px; font-family: 'Courier New', monospace; font-size: 14px; padding: 15px; border: 2px solid #cbd5e1; border-radius: 8px; resize: vertical;" placeholder='Enter JSON here...
+Example:
+{
+  "name": "Alice",
+  "age": 28,
+  "hobbies": ["coding", "reading"]
+}'>{
+  "name": "Alice Johnson",
+  "age": 28,
+  "email": "alice@example.com",
+  "isActive": true,
+  "hobbies": ["coding", "reading", "gaming"]
+}</textarea>
+                        <div style="margin-top: 15px;">
+                            <button onclick="validateJSON()" style="background: #3b82f6; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold; margin-right: 10px;">
+                                ✓ Validate & Format
+                            </button>
+                            <button onclick="clearJSON()" style="background: #64748b; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold;">
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 style="margin-bottom: 10px;">📋 Result:</h4>
+                        <div id="jsonOutput" style="width: 100%; height: 300px; font-family: 'Courier New', monospace; font-size: 14px; padding: 15px; border: 2px solid #cbd5e1; border-radius: 8px; overflow: auto; background: #f8fafc; white-space: pre-wrap; word-wrap: break-word;"></div>
+                        <div id="jsonStatus" style="margin-top: 15px; padding: 12px; border-radius: 8px; font-weight: bold; display: none;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+            function validateJSON() {
+                const input = document.getElementById('jsonInput').value;
+                const output = document.getElementById('jsonOutput');
+                const status = document.getElementById('jsonStatus');
+
+                try {
+                    // Try to parse the JSON
+                    const parsed = JSON.parse(input);
+
+                    // If successful, format it beautifully
+                    const formatted = JSON.stringify(parsed, null, 2);
+                    output.textContent = formatted;
+                    output.style.color = '#059669';
+                    output.style.borderColor = '#10b981';
+
+                    // Show success message
+                    status.style.display = 'block';
+                    status.style.background = '#d1fae5';
+                    status.style.color = '#065f46';
+                    status.style.borderLeft = '4px solid #10b981';
+                    status.innerHTML = '✅ Valid JSON! Successfully parsed and formatted.';
+
+                } catch (error) {
+                    // If parsing fails, show the error
+                    output.textContent = '❌ Invalid JSON\n\nError: ' + error.message + '\n\nPlease check:\n• All keys are in double quotes\n• No trailing commas\n• Proper bracket/brace matching\n• Valid escape sequences in strings';
+                    output.style.color = '#dc2626';
+                    output.style.borderColor = '#ef4444';
+
+                    // Show error message
+                    status.style.display = 'block';
+                    status.style.background = '#fee2e2';
+                    status.style.color = '#991b1b';
+                    status.style.borderLeft = '4px solid #dc2626';
+                    status.innerHTML = '❌ Invalid JSON! Please fix the errors above.';
+                }
+            }
+
+            function clearJSON() {
+                document.getElementById('jsonInput').value = '';
+                document.getElementById('jsonOutput').textContent = '';
+                document.getElementById('jsonStatus').style.display = 'none';
+                const output = document.getElementById('jsonOutput');
+                output.style.color = '#64748b';
+                output.style.borderColor = '#cbd5e1';
+            }
+
+            // Auto-validate on page load for the example
+            if (document.getElementById('jsonInput').value.trim()) {
+                validateJSON();
+            }
+            </script>
+
+            <div class="interactive-demo">
+                <div class="demo-title">📊 JSON is the universal language of data exchange on the web - master it to work effectively with modern APIs and applications!</div>
+            </div>
+        </div>
+
+        <!-- Slide 14: What is Postman? -->
+        <div class="slide">
+            <h2>What is Postman?</h2>
+
+            <h3>Introduction to Postman:</h3>
+            <p><strong>Postman</strong> is a powerful API development and testing platform that simplifies the process of building, testing, documenting, and sharing APIs. It's the world's most popular API client used by millions of developers worldwide.</p>
+
+            <div style="background: #f1f5f9; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <h4>🎯 Why Postman is Essential:</h4>
+                <ul>
+                    <li><strong>API Testing:</strong> Test APIs without writing code</li>
+                    <li><strong>Documentation:</strong> Automatically generate API documentation</li>
+                    <li><strong>Collaboration:</strong> Share API collections with your team</li>
+                    <li><strong>Automation:</strong> Automate testing with collections and scripts</li>
+                    <li><strong>Environment Management:</strong> Switch between dev, staging, and production easily</li>
+                    <li><strong>Mock Servers:</strong> Create mock APIs before backend is ready</li>
+                </ul>
+            </div>
+
+            <h3>Real-Life Analogy:</h3>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <h4>📞 Phone Testing Device</h4>
+                    <p><strong>Phone system:</strong> Your API backend</p>
+                    <p><strong>Test device:</strong> Postman</p>
+                    <p><strong>Make calls:</strong> Send API requests</p>
+                    <p><strong>Listen to responses:</strong> See API responses</p>
+                    <p><strong>Save contacts:</strong> Store frequently used requests</p>
+                    <p>Just as you test a phone system before deploying it, Postman tests APIs before integration</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔬 Scientific Laboratory</h4>
+                    <p><strong>Experiment:</strong> API request</p>
+                    <p><strong>Lab equipment:</strong> Postman tools</p>
+                    <p><strong>Record results:</strong> Save responses</p>
+                    <p><strong>Repeat experiments:</strong> Automated tests</p>
+                    <p><strong>Share findings:</strong> Team collaboration</p>
+                    <p>Postman is your lab for experimenting with and testing APIs</p>
+                </div>
+            </div>
+
+            <h3>Key Features:</h3>
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+                <div class="feature-grid">
+                    <div>
+                        <h4>🚀 Request Building</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>GET, POST, PUT, DELETE, PATCH</li>
+                            <li>Headers and authentication</li>
+                            <li>Query parameters</li>
+                            <li>Request body (JSON, XML, form-data)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>📚 Collections</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Organize related requests</li>
+                            <li>Share with team members</li>
+                            <li>Version control</li>
+                            <li>Export/import collections</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>🔄 Environments</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Variables for different environments</li>
+                            <li>Switch between dev/staging/prod</li>
+                            <li>Global and local variables</li>
+                            <li>Dynamic values</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>🧪 Testing & Automation</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Write test scripts</li>
+                            <li>Automated test suites</li>
+                            <li>CI/CD integration</li>
+                            <li>Performance testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Postman Interface Overview:</h3>
+            <div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                <h4>🖥️ Main Components:</h4>
+                <ol style="margin-left: 20px;">
+                    <li><strong>Sidebar:</strong> Navigate collections, environments, and history</li>
+                    <li><strong>Request Builder:</strong> Construct and send API requests</li>
+                    <li><strong>Response Viewer:</strong> View response body, headers, status codes</li>
+                    <li><strong>Environment Selector:</strong> Switch between different environments</li>
+                    <li><strong>Tabs:</strong> Work with multiple requests simultaneously</li>
+                    <li><strong>Console:</strong> Debug and view request/response logs</li>
+                </ol>
+            </div>
+
+            <h3>Common HTTP Methods in Postman:</h3>
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+                <table style="width: 100%; border-collapse: collapse;">
+                    <tr style="background: #e0f2fe;">
+                        <th style="padding: 12px; text-align: left; border: 1px solid #bae6fd;">Method</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #bae6fd;">Purpose</th>
+                        <th style="padding: 12px; text-align: left; border: 1px solid #bae6fd;">Example Use Case</th>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;"><strong style="color: #059669;">GET</strong></td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Retrieve data</td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Get user profile, list products</td>
+                    </tr>
+                    <tr style="background: #f0f9ff;">
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;"><strong style="color: #0ea5e9;">POST</strong></td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Create new resource</td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Create user account, submit order</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;"><strong style="color: #f59e0b;">PUT</strong></td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Update entire resource</td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Update user profile completely</td>
+                    </tr>
+                    <tr style="background: #f0f9ff;">
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;"><strong style="color: #8b5cf6;">PATCH</strong></td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Partially update resource</td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Update only user email</td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;"><strong style="color: #dc2626;">DELETE</strong></td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Remove resource</td>
+                        <td style="padding: 12px; border: 1px solid #e0f2fe;">Delete user account, remove item</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="interactive-demo">
+                <div class="demo-title">🚀 Postman is the Swiss Army knife for API development - master it to supercharge your API workflow!</div>
+            </div>
+        </div>
+
+        <!-- Slide 15: How to Download and Install Postman -->
+        <div class="slide">
+            <h2>How to Download and Install Postman</h2>
+
+            <h3>Download Options:</h3>
+            <div style="background: #f1f5f9; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <h4>💻 Available Platforms:</h4>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🪟 Windows</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Windows 10/11 (64-bit)</li>
+                            <li>Desktop application</li>
+                            <li>Auto-updates</li>
+                            <li>Native performance</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🍎 macOS</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>macOS 10.15 or later</li>
+                            <li>Intel and Apple Silicon</li>
+                            <li>Native Mac app</li>
+                            <li>Automatic updates</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🐧 Linux</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Ubuntu, Fedora, etc.</li>
+                            <li>.deb and .rpm packages</li>
+                            <li>AppImage available</li>
+                            <li>Snap package</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🌐 Web Version</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Browser-based</li>
+                            <li>No installation needed</li>
+                            <li>Cross-platform</li>
+                            <li>Limited features</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Installation Steps:</h3>
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+                <h4>📥 Step-by-Step Installation:</h4>
+                <ol style="margin-left: 20px; line-height: 2;">
+                    <li><strong>Visit Official Website:</strong> Go to <code>https://www.postman.com/downloads/</code></li>
+                    <li><strong>Select Your Platform:</strong> Click download for Windows, macOS, or Linux</li>
+                    <li><strong>Download the Installer:</strong> Wait for download to complete</li>
+                    <li><strong>Run the Installer:</strong>
+                        <ul style="margin-top: 10px;">
+                            <li><strong>Windows:</strong> Double-click .exe file and follow wizard</li>
+                            <li><strong>macOS:</strong> Open .dmg file and drag to Applications</li>
+                            <li><strong>Linux:</strong> Install using package manager or run AppImage</li>
+                        </ul>
+                    </li>
+                    <li><strong>Launch Postman:</strong> Open the application</li>
+                    <li><strong>Sign Up/Sign In:</strong> Create free account or sign in (optional but recommended)</li>
+                    <li><strong>Start Using:</strong> Begin creating requests and collections!</li>
+                </ol>
+            </div>
+
+            <h3>Terminal Installation (Alternative):</h3>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-title">Install Postman via Command Line</div>
+                </div>
+                <div class="terminal-content active">
+                    <div class="terminal-body">
+                        <div class="terminal-line">
+                            <span class="terminal-comment"># macOS (using Homebrew)</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">brew install --cask postman</span>
+                        </div>
+                        <div class="terminal-line" style="margin-top: 15px;">
+                            <span class="terminal-comment"># Linux (Ubuntu/Debian - using Snap)</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">sudo snap install postman</span>
+                        </div>
+                        <div class="terminal-line" style="margin-top: 15px;">
+                            <span class="terminal-comment"># Linux (using wget and tar)</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">wget https://dl.pstmn.io/download/latest/linux64 -O postman.tar.gz</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">sudo tar -xzf postman.tar.gz -C /opt</span>
+                        </div>
+                        <div class="terminal-line">
+                            <span class="terminal-prompt">$</span>
+                            <span class="terminal-command">sudo ln -s /opt/Postman/Postman /usr/bin/postman</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Postman Versions:</h3>
+            <div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <h4>🆓 Free Version</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Unlimited API requests</li>
+                            <li>Collections and environments</li>
+                            <li>Basic collaboration (3 users)</li>
+                            <li>Mock servers (1000 calls/month)</li>
+                            <li>API documentation</li>
+                            <li>Perfect for individuals and small teams</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>💼 Paid Plans</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li><strong>Basic:</strong> More mock server calls</li>
+                            <li><strong>Professional:</strong> Advanced features</li>
+                            <li><strong>Enterprise:</strong> SSO, admin controls</li>
+                            <li>Increased team collaboration</li>
+                            <li>Priority support</li>
+                            <li>Advanced monitoring and reporting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>First-Time Setup:</h3>
+            <div style="background: #d1fae5; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #10b981;">
+                <h4>✅ Initial Configuration:</h4>
+                <ol style="margin-left: 20px;">
+                    <li><strong>Create Workspace:</strong> Organize your API work</li>
+                    <li><strong>Set Up Environments:</strong> Create dev, staging, production environments</li>
+                    <li><strong>Import Collections:</strong> Import existing API collections if available</li>
+                    <li><strong>Configure Settings:</strong> Adjust themes, shortcuts, and preferences</li>
+                    <li><strong>Install Interceptor:</strong> Optional browser extension for cookie/session handling</li>
+                </ol>
+            </div>
+
+            <div class="interactive-demo">
+                <div class="demo-title">📦 Getting Postman installed is the first step to becoming an API testing pro!</div>
+            </div>
+        </div>
+
+        <!-- Slide 16: Postman for Backend Developers -->
+        <div class="slide">
+            <h2>Postman for Backend Developers</h2>
+
+            <h3>Why Backend Developers Love Postman:</h3>
+            <p>As a backend developer, Postman is your essential tool for building, testing, and debugging APIs quickly and efficiently.</p>
+
+            <div style="background: #f1f5f9; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <h4>🎯 Key Benefits for Backend Developers:</h4>
+                <ul>
+                    <li><strong>Rapid API Testing:</strong> Test endpoints instantly without frontend</li>
+                    <li><strong>Debug Faster:</strong> Identify and fix API issues quickly</li>
+                    <li><strong>Development Speed:</strong> Build and iterate on APIs faster</li>
+                    <li><strong>Documentation:</strong> Auto-generate API documentation</li>
+                    <li><strong>Version Control:</strong> Track API changes over time</li>
+                    <li><strong>Share with Frontend:</strong> Provide ready-to-use API examples</li>
+                </ul>
+            </div>
+
+            <h3>Common Backend Developer Use Cases:</h3>
+            <div class="feature-grid">
+                <div class="feature-card" style="background: #dbeafe; border-left: 4px solid #3b82f6;">
+                    <h4>🔨 API Development</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Build and test new endpoints</li>
+                        <li>Validate request/response format</li>
+                        <li>Test different HTTP methods</li>
+                        <li>Check status codes and headers</li>
+                        <li>Test authentication flows</li>
+                    </ul>
+                </div>
+                <div class="feature-card" style="background: #fef3c7; border-left: 4px solid #f59e0b;">
+                    <h4>🐛 Debugging</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Reproduce reported bugs</li>
+                        <li>Test edge cases</li>
+                        <li>Validate error handling</li>
+                        <li>Check database queries</li>
+                        <li>Monitor response times</li>
+                    </ul>
+                </div>
+                <div class="feature-card" style="background: #d1fae5; border-left: 4px solid #10b981;">
+                    <h4>📝 Documentation</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Create API documentation</li>
+                        <li>Provide request examples</li>
+                        <li>Share with frontend team</li>
+                        <li>Document authentication</li>
+                        <li>Explain error responses</li>
+                    </ul>
+                </div>
+                <div class="feature-card" style="background: #f3e8ff; border-left: 4px solid #8b5cf6;">
+                    <h4>🔐 Security Testing</h4>
+                    <ul style="font-size: 0.9em;">
+                        <li>Test authentication</li>
+                        <li>Validate authorization</li>
+                        <li>Check input validation</li>
+                        <li>Test rate limiting</li>
+                        <li>Verify CORS settings</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Example Workflow - Building a REST API:</h3>
+            <div style="background: #f0f9ff; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #0ea5e9;">
+                <h4>🚀 Step-by-Step Process:</h4>
+                <ol style="margin-left: 20px; line-height: 1.8;">
+                    <li><strong>Create Collection:</strong> Name it after your API (e.g., "User Management API")</li>
+                    <li><strong>Set Up Environment:</strong> Add base URL variable: <code>{{base_url}}</code> = <code>http://localhost:3000</code></li>
+                    <li><strong>Create Request - Register User:</strong>
+                        <div style="margin-top: 10px; background: #fff; padding: 15px; border-radius: 5px; font-family: monospace;">
+                            POST {{base_url}}/api/users/register<br>
+                            Body (JSON):<br>
+                            {<br>
+                            &nbsp;&nbsp;"email": "test@example.com",<br>
+                            &nbsp;&nbsp;"password": "securepass123",<br>
+                            &nbsp;&nbsp;"name": "Test User"<br>
+                            }
+                        </div>
+                    </li>
+                    <li><strong>Add Tests:</strong> Verify response status, structure, and data</li>
+                    <li><strong>Test Edge Cases:</strong> Invalid email, weak password, duplicate user</li>
+                    <li><strong>Document:</strong> Add descriptions, examples, and expected responses</li>
+                    <li><strong>Share:</strong> Export collection or share workspace with team</li>
+                </ol>
+            </div>
+
+            <h3>Backend Developer Power Features:</h3>
+            <div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                <div class="feature-grid">
+                    <div>
+                        <h4>🔄 Pre-request Scripts</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Generate timestamps</li>
+                            <li>Create signatures</li>
+                            <li>Set dynamic variables</li>
+                            <li>Prepare test data</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>✅ Test Scripts</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Validate status codes</li>
+                            <li>Check response schema</li>
+                            <li>Extract data for next request</li>
+                            <li>Assert expected values</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>🎭 Mock Servers</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Create mock endpoints</li>
+                            <li>Test before implementation</li>
+                            <li>Share with frontend early</li>
+                            <li>Simulate different scenarios</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>📊 Monitors</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Schedule API tests</li>
+                            <li>Monitor uptime</li>
+                            <li>Track performance</li>
+                            <li>Get alerts on failures</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Example: Testing Authentication Flow</h3>
+            <div class="terminal">
+                <div class="terminal-header">
+                    <div class="terminal-button close"></div>
+                    <div class="terminal-button minimize"></div>
+                    <div class="terminal-button maximize"></div>
+                    <div class="terminal-title">Authentication Test Script</div>
+                </div>
+                <div class="terminal-content active">
+                    <div class="terminal-body">
+                        <pre style="margin: 0; color: #64748b; font-size: 13px;">// Test Script for Login Endpoint
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response has token", function () {
+    var jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property('token');
+    pm.expect(jsonData.token).to.be.a('string');
+});
+
+// Save token for subsequent requests
+var jsonData = pm.response.json();
+pm.environment.set("auth_token", jsonData.token);
+
+pm.test("User data is correct", function () {
+    pm.expect(jsonData.user.email).to.eql("test@example.com");
+});
+
+pm.test("Response time is acceptable", function () {
+    pm.expect(pm.response.responseTime).to.be.below(500);
+});</pre>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <div class="demo-title">💻 Backend developers use Postman to build robust, well-tested APIs faster than ever!</div>
+            </div>
+        </div>
+
+        <!-- Slide 17: Postman for Mobile & QA Engineers -->
+        <div class="slide">
+            <h2>Postman for Mobile Developers & QA Engineers</h2>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                <!-- Mobile Developer Section -->
+                <div>
+                    <h3>📱 For Mobile Developers:</h3>
+                    <div style="background: #dbeafe; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #3b82f6;">
+                        <h4>Why Mobile Devs Use Postman:</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li><strong>API Integration:</strong> Test backend APIs before integrating into app</li>
+                            <li><strong>Faster Development:</strong> Verify endpoints without compiling app</li>
+                            <li><strong>Offline Testing:</strong> Use mock servers when backend isn't ready</li>
+                            <li><strong>Debug Issues:</strong> Isolate if problem is in app or API</li>
+                            <li><strong>Platform Agnostic:</strong> Same API for iOS and Android</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>🔧 Common Use Cases:</h4>
+                        <ul style="font-size: 0.85em; line-height: 1.8;">
+                            <li><strong>Verify API Responses:</strong> Check data structure before parsing</li>
+                            <li><strong>Test Authentication:</strong> OAuth, JWT, API keys</li>
+                            <li><strong>Handle Errors:</strong> Test error scenarios and edge cases</li>
+                            <li><strong>Performance Testing:</strong> Check response times</li>
+                            <li><strong>Push Notifications:</strong> Test FCM/APNS endpoints</li>
+                            <li><strong>File Uploads:</strong> Test image/video upload APIs</li>
+                            <li><strong>Pagination:</strong> Test list endpoints with offset/limit</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fef3c7; padding: 20px; border-radius: 10px;">
+                        <h4>📲 Mobile Dev Workflow:</h4>
+                        <ol style="font-size: 0.85em; line-height: 1.8;">
+                            <li>Get API documentation from backend team</li>
+                            <li>Import collection or create requests</li>
+                            <li>Test all endpoints in Postman</li>
+                            <li>Verify response formats match models</li>
+                            <li>Generate code snippets (Swift/Kotlin)</li>
+                            <li>Integrate into mobile app</li>
+                            <li>Use Postman to debug issues</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- QA Engineer Section -->
+                <div>
+                    <h3>🧪 For QA Engineers:</h3>
+                    <div style="background: #d1fae5; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #10b981;">
+                        <h4>Why QA Teams Use Postman:</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li><strong>API Testing:</strong> Comprehensive API test coverage</li>
+                            <li><strong>Automation:</strong> Automated regression testing</li>
+                            <li><strong>No Coding Required:</strong> Test without programming knowledge</li>
+                            <li><strong>CI/CD Integration:</strong> Run tests in pipeline</li>
+                            <li><strong>Test Documentation:</strong> Clear test case management</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #f0fdf4; padding: 20px; border-radius: 10px; margin: 20px 0;">
+                        <h4>✅ QA Testing Scenarios:</h4>
+                        <ul style="font-size: 0.85em; line-height: 1.8;">
+                            <li><strong>Functional Testing:</strong> Verify all features work correctly</li>
+                            <li><strong>Regression Testing:</strong> Ensure new changes don't break existing functionality</li>
+                            <li><strong>Integration Testing:</strong> Test multiple endpoints together</li>
+                            <li><strong>Load Testing:</strong> Check API performance under load</li>
+                            <li><strong>Security Testing:</strong> Validate authentication and authorization</li>
+                            <li><strong>Negative Testing:</strong> Test with invalid inputs</li>
+                            <li><strong>Boundary Testing:</strong> Test min/max values</li>
+                        </ul>
+                    </div>
+
+                    <div style="background: #fef3c7; padding: 20px; border-radius: 10px;">
+                        <h4>🔄 QA Automation Workflow:</h4>
+                        <ol style="font-size: 0.85em; line-height: 1.8;">
+                            <li>Create test collections</li>
+                            <li>Write test assertions</li>
+                            <li>Set up test data and environments</li>
+                            <li>Run collection with Newman (CLI)</li>
+                            <li>Integrate with Jenkins/GitHub Actions</li>
+                            <li>Generate test reports</li>
+                            <li>Monitor API health</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Example Test Cases for QA:</h3>
+            <div style="background: #f1f5f9; padding: 25px; border-radius: 10px; margin: 20px 0;">
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>✅ Positive Tests</h4>
+                        <ul style="font-size: 0.85em;">
+                            <li>Valid data returns 200</li>
+                            <li>Response schema is correct</li>
+                            <li>Data is saved in database</li>
+                            <li>Relationships are maintained</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>❌ Negative Tests</h4>
+                        <ul style="font-size: 0.85em;">
+                            <li>Invalid data returns 400</li>
+                            <li>Unauthorized returns 401</li>
+                            <li>Missing required fields</li>
+                            <li>Duplicate entries handled</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔒 Security Tests</h4>
+                        <ul style="font-size: 0.85em;">
+                            <li>Authentication required</li>
+                            <li>SQL injection prevention</li>
+                            <li>XSS attack prevention</li>
+                            <li>Rate limiting works</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>⚡ Performance Tests</h4>
+                        <ul style="font-size: 0.85em;">
+                            <li>Response time under 500ms</li>
+                            <li>Handles concurrent requests</li>
+                            <li>Large payload handling</li>
+                            <li>Timeout handling</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <div class="demo-title">🎯 Mobile developers and QA engineers rely on Postman to ensure APIs work flawlessly across all scenarios!</div>
+            </div>
+        </div>
+
+        <!-- Slide 18: Postman for PMs, Security & Data Scientists -->
+        <div class="slide">
+            <h2>Postman for Project Managers, Security & Data Scientists</h2>
+
+            <h3>👔 For Project Managers:</h3>
+            <div style="background: #fef3c7; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #f59e0b;">
+                <h4>How PMs Benefit from Postman:</h4>
+                <div class="feature-grid">
+                    <div>
+                        <h4>📊 Project Tracking</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Monitor API development progress</li>
+                            <li>Track completed vs pending endpoints</li>
+                            <li>Review API documentation status</li>
+                            <li>Verify deliverables</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>🤝 Stakeholder Communication</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Share API progress with stakeholders</li>
+                            <li>Demo API functionality</li>
+                            <li>Provide access to documentation</li>
+                            <li>Show integration examples</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>✅ Acceptance Testing</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Verify requirements are met</li>
+                            <li>Test user stories</li>
+                            <li>Validate business logic</li>
+                            <li>Confirm API contracts</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>📈 Reporting</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Generate API status reports</li>
+                            <li>Monitor test coverage</li>
+                            <li>Track API performance metrics</li>
+                            <li>Measure quality metrics</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>🔐 For Cyber Security Professionals:</h3>
+            <div style="background: #fee2e2; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #dc2626;">
+                <h4>Security Testing with Postman:</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 15px;">
+                    <div>
+                        <h4>🛡️ Authentication Testing</h4>
+                        <ul style="font-size: 0.9em; line-height: 1.8;">
+                            <li><strong>Test auth mechanisms:</strong> JWT, OAuth 2.0, API Keys</li>
+                            <li><strong>Token validation:</strong> Expired tokens, invalid tokens</li>
+                            <li><strong>Session management:</strong> Session hijacking prevention</li>
+                            <li><strong>Password policies:</strong> Weak password rejection</li>
+                            <li><strong>Multi-factor auth:</strong> MFA flow testing</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>🔒 Authorization Testing</h4>
+                        <ul style="font-size: 0.9em; line-height: 1.8;">
+                            <li><strong>Access control:</strong> Role-based permissions</li>
+                            <li><strong>Privilege escalation:</strong> Prevent unauthorized access</li>
+                            <li><strong>Resource ownership:</strong> Users can only access their data</li>
+                            <li><strong>API key scope:</strong> Limited permissions per key</li>
+                            <li><strong>CORS policies:</strong> Cross-origin restrictions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 20px;">⚠️ Vulnerability Testing:</h4>
+                <div class="feature-grid" style="margin-top: 15px;">
+                    <div class="feature-card">
+                        <h4>💉 Injection Attacks</h4>
+                        <ul style="font-size: 0.85em;">
+                            <li>SQL injection attempts</li>
+                            <li>NoSQL injection testing</li>
+                            <li>Command injection</li>
+                            <li>XSS attack vectors</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔓 Security Misconfig</h4>
+                        <ul style="font-size: 0.85em;">
+                            <li>Exposed sensitive data</li>
+                            <li>Debug mode enabled</li>
+                            <li>Default credentials</li>
+                            <li>Verbose error messages</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🚦 Rate Limiting</h4>
+                        <ul style="font-size: 0.85em;">
+                            <li>Brute force prevention</li>
+                            <li>DDoS protection</li>
+                            <li>API abuse prevention</li>
+                            <li>Throttling verification</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📡 Data Protection</h4>
+                        <ul style="font-size: 0.85em;">
+                            <li>HTTPS enforcement</li>
+                            <li>Data encryption</li>
+                            <li>PII handling</li>
+                            <li>Secure headers (CSP, HSTS)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>📊 For Data Scientists:</h3>
+            <div style="background: #dbeafe; padding: 25px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #3b82f6;">
+                <h4>How Data Scientists Use Postman:</h4>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🤖 ML Model APIs</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Test ML model endpoints</li>
+                            <li>Send sample data for predictions</li>
+                            <li>Validate model responses</li>
+                            <li>Test different input formats</li>
+                            <li>Benchmark inference time</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📥 Data Collection</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Pull data from APIs</li>
+                            <li>Automate data fetching</li>
+                            <li>Test pagination for large datasets</li>
+                            <li>Export data for analysis</li>
+                            <li>Schedule data collection</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>🔄 ETL Pipelines</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Test data transformation APIs</li>
+                            <li>Validate data quality</li>
+                            <li>Check data pipeline endpoints</li>
+                            <li>Monitor data flow</li>
+                            <li>Debug data issues</li>
+                        </ul>
+                    </div>
+                    <div class="feature-card">
+                        <h4>📈 Analytics APIs</h4>
+                        <ul style="font-size: 0.9em;">
+                            <li>Query analytics endpoints</li>
+                            <li>Test reporting APIs</li>
+                            <li>Validate metrics calculation</li>
+                            <li>Export reports via API</li>
+                            <li>Integrate with BI tools</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h4 style="margin-top: 20px;">🧬 Example: Testing ML Prediction API</h4>
+                <div class="terminal" style="margin-top: 15px;">
+                    <div class="terminal-header">
+                        <div class="terminal-button close"></div>
+                        <div class="terminal-button minimize"></div>
+                        <div class="terminal-button maximize"></div>
+                        <div class="terminal-title">ML Model API Request</div>
+                    </div>
+                    <div class="terminal-content active">
+                        <div class="terminal-body">
+                            <pre style="margin: 0; color: #64748b; font-size: 13px;">POST https://api.example.com/ml/predict
+Headers:
+  Authorization: Bearer {{api_token}}
+  Content-Type: application/json
+
+Body:
+{
+  "model": "customer-churn-v2",
+  "features": {
+    "age": 35,
+    "tenure_months": 24,
+    "monthly_charges": 79.99,
+    "contract_type": "month-to-month",
+    "internet_service": "fiber",
+    "total_charges": 1919.76
+  }
+}
+
+Expected Response:
+{
+  "prediction": "churn",
+  "probability": 0.73,
+  "confidence": "high",
+  "model_version": "2.1.0",
+  "inference_time_ms": 45
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <div class="demo-title">🌟 From project management to security to data science - Postman serves diverse roles across the entire organization!</div>
+            </div>
+        </div>
+
+        <!-- Slide 19: Remote Repositories -->
         <div class="slide">
             <h2>Remote Repositories</h2>
             
