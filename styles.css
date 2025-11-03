@@ -1,3 +1,21 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333;
+    --slide-bg: #ffffff;
+    --slide-shadow: rgba(0, 0, 0, 0.2);
+    --body-gradient-1: #1e3c72;
+    --body-gradient-2: #2a5298;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --slide-bg: #2d2d2d;
+    --slide-shadow: rgba(0, 0, 0, 0.4);
+    --body-gradient-1: #121212;
+    --body-gradient-2: #1e1e1e;
+}
+
 * {
     margin: 0;
     padding: 0;
