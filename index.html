@@ -5,8 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Git Fundamentals - Interactive Presentation</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+    </button>
     <div class="presentation-container">
         <!-- Slide 1: About Me -->
         <div class="slide active">
@@ -2010,6 +2027,145 @@ To github.com:username/repo.git
                             <li>Cleaner, easier to follow</li>
                             <li>Simplifies project timeline</li>
                         </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Visual Comparison: Merge vs Rebase</h3>
+            <div style="background: #ffffff; padding: 30px; border-radius: 10px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+
+                <!-- Before: Initial State -->
+                <div style="margin-bottom: 40px;">
+                    <h4 style="text-align: center; color: #1e293b; margin-bottom: 20px;">📍 Before: Initial State</h4>
+                    <div style="background: #f8fafc; padding: 20px; border-radius: 8px; font-family: monospace; font-size: 0.9em;">
+                        <div style="margin-bottom: 15px;">
+                            <div style="color: #64748b; margin-bottom: 5px;">main branch:</div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">A</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">B</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">C</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">D</span>
+                            </div>
+                        </div>
+                        <div style="margin-left: 40px; margin-top: 20px;">
+                            <div style="color: #64748b; margin-bottom: 5px;">feature branch (created from B):</div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="background: #3b82f6; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">X</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #3b82f6; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">Y</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px; padding: 10px; background: #fff7ed; border-left: 3px solid #f97316; color: #9a3412; font-size: 0.85em;">
+                            <strong>Situation:</strong> Your feature branch (X, Y) was created from commit B, but main has moved forward with commits C and D.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- After: Git Merge -->
+                <div style="margin-bottom: 40px;">
+                    <h4 style="text-align: center; color: #1e293b; margin-bottom: 20px;">🔀 After: Git Merge</h4>
+                    <div style="background: #fef3c7; padding: 20px; border-radius: 8px; border: 2px solid #fbbf24; font-family: monospace; font-size: 0.9em;">
+                        <div style="margin-bottom: 10px; color: #92400e; font-weight: bold;">Command: git merge feature-branch</div>
+                        <div style="margin-bottom: 15px;">
+                            <div style="color: #64748b; margin-bottom: 5px;">main branch:</div>
+                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">A</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">B</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">C</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">D</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #f59e0b; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">M</span>
+                                <span style="font-size: 0.8em; color: #92400e;">(merge commit)</span>
+                            </div>
+                        </div>
+                        <div style="margin-left: 40px; margin-top: 15px; margin-bottom: 15px;">
+                            <div style="color: #64748b; margin-bottom: 5px;">feature branch:</div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="background: #3b82f6; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">X</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #3b82f6; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">Y</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="color: #92400e;">↗ merged into M</span>
+                            </div>
+                        </div>
+                        <div style="padding: 10px; background: white; border-left: 3px solid #f59e0b; color: #92400e; font-size: 0.85em;">
+                            ✓ <strong>Merge creates commit M</strong> that combines C, D (from main) and X, Y (from feature)<br>
+                            ✓ History shows both branches<br>
+                            ✓ Non-linear history with merge commit
+                        </div>
+                    </div>
+                </div>
+
+                <!-- After: Git Rebase -->
+                <div>
+                    <h4 style="text-align: center; color: #1e293b; margin-bottom: 20px;">📝 After: Git Rebase</h4>
+                    <div style="background: #dbeafe; padding: 20px; border-radius: 8px; border: 2px solid #3b82f6; font-family: monospace; font-size: 0.9em;">
+                        <div style="margin-bottom: 10px; color: #1e40af; font-weight: bold;">Command: git rebase main</div>
+                        <div style="margin-bottom: 15px;">
+                            <div style="color: #64748b; margin-bottom: 5px;">main branch:</div>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">A</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">B</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">C</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">D</span>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                            <div style="color: #64748b; margin-bottom: 5px;">feature branch (rebased):</div>
+                            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">A</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">B</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">C</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #10b981; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">D</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #8b5cf6; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">X'</span>
+                                <span style="color: #94a3b8;">→</span>
+                                <span style="background: #8b5cf6; color: white; padding: 8px 15px; border-radius: 6px; font-weight: bold;">Y'</span>
+                                <span style="font-size: 0.8em; color: #1e40af;">(replayed commits)</span>
+                            </div>
+                        </div>
+                        <div style="padding: 10px; background: white; border-left: 3px solid #3b82f6; color: #1e40af; font-size: 0.85em;">
+                            ✓ <strong>Rebase replays X and Y</strong> on top of D (commits become X', Y')<br>
+                            ✓ No merge commit created<br>
+                            ✓ Linear, clean history - looks like you worked on latest code all along
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Differences Summary -->
+                <div style="margin-top: 30px; padding: 20px; background: #f1f5f9; border-radius: 8px; border: 2px solid #64748b;">
+                    <h4 style="color: #1e293b; margin-bottom: 15px; text-align: center;">🔑 Key Differences</h4>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 0.9em;">
+                        <div>
+                            <div style="font-weight: bold; color: #f59e0b; margin-bottom: 8px;">🔀 Merge:</div>
+                            <ul style="margin: 0; padding-left: 20px; color: #475569;">
+                                <li>Creates new commit (M)</li>
+                                <li>Preserves original commits (X, Y)</li>
+                                <li>Shows branch history</li>
+                                <li>Safe for public branches</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div style="font-weight: bold; color: #3b82f6; margin-bottom: 8px;">📝 Rebase:</div>
+                            <ul style="margin: 0; padding-left: 20px; color: #475569;">
+                                <li>No merge commit</li>
+                                <li>Rewrites commits (X', Y')</li>
+                                <li>Linear history</li>
+                                <li>Only for private branches</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
