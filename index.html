@@ -30,7 +30,7 @@
             <div class="intro-icon">👋</div>
             <h1>About Me</h1>
             <p style="text-align: center; font-size: 1.4em; color: #64748b; margin-bottom: 40px;">
-               We are on Branch <strong>User Login feature</strong>/
+               We are on Branch <strong>Feature <h2>user-login</h2></strong>/
             </p>
 
             <!-- Google Login Button -->
@@ -75,7 +75,7 @@
                         id="student-name-display" 
                         style="font-size: 1.3em; color: #334155; padding: 10px 0; min-height: 1.5em; font-weight: 500;"
                     >
-                        [Ibrahim FLFEIFEL]
+                        [Esraa Naji]
                     </div>
                 </div>
                 
@@ -87,7 +87,7 @@
                         id="student-university-display" 
                         style="font-size: 1.3em; color: #334155; padding: 10px 0; min-height: 1.5em; font-weight: 500;"
                     >
-                        [AUST]
+                        [LIU]
                     </div>
                 </div>
                 
@@ -99,7 +99,7 @@
                         id="student-linkedin-display" 
                         style="font-size: 1.3em; color: #334155; padding: 10px 0; min-height: 1.5em; font-weight: 500;"
                     >
-                        <a href="https://linkedin.com/in/ibrahimfleifel">View my linkedin  Account</a>
+                        https://linkedin.com/in/esraa-naji This is my linkedin profile
                     </div>
                 </div>
                 
@@ -116,7 +116,7 @@
                             style="width: 100%; padding: 12px; font-size: 1em; border: 2px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;"
                         >
                     </div>
-                    
+            
                     <div style="margin-bottom: 20px;">
                         <label style="display: block; font-size: 1.1em; font-weight: bold; margin-bottom: 8px; color: #1e293b;">University:</label>
                         <input 
@@ -132,7 +132,7 @@
                         <input 
                             type="url" 
                             id="student-linkedin-edit" 
-                            placeholder="https://linkedin.com/in/your-profile" 
+                            placeholder="https://linkedin.com/in/esraanaji" 
                             style="width: 100%; padding: 12px; font-size: 1em; border: 2px solid #e2e8f0; border-radius: 6px; box-sizing: border-box;"
                         >
                     </div>
@@ -4038,7 +4038,138 @@ b3c4d5e Initial commit</div>
         <button class="nav-btn" id="prev-btn" onclick="previousSlide()">← Previous</button>
         <button class="nav-btn" id="next-btn" onclick="nextSlide()">Next →</button>
     </div>
-
+     
     <script src="script.js"></script>
+    <!-- Interactive Quiz Module -->
+<div class="terminal" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="terminal-header">
+        <div class="terminal-title">🎯 Your Quiz Title</div>
+    </div>
+    <div class="terminal-tabs">
+        <div class="terminal-tab active" data-tab="quiz-interactive">Interactive Quiz</div>
+        <div class="terminal-tab" data-tab="quiz-code">View Code</div>
+    </div>
+    <div class="terminal-content">
+        <div id="quiz-interactive" class="quiz-tab-content">
+            <!-- Question 1 -->
+            <div class="quiz-question" data-question="1"
+                 style="background: rgba(255,255,255,0.1); padding: 20px;
+                        border-radius: 10px; margin-bottom: 20px;">
+                <p style="font-weight: bold; margin-bottom: 15px;">
+                    1. Your question here?
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <button class="quiz-option" data-correct="false"
+                            onclick="checkAnswer(this, 1)"
+                            style="background: rgba(255,255,255,0.2);
+                                   border: 2px solid rgba(255,255,255,0.3);
+                                   padding: 12px; border-radius: 8px;
+                                   cursor: pointer; color: white;">
+                        A) Wrong answer
+                    </button>
+                    <button class="quiz-option" data-correct="true"
+                            onclick="checkAnswer(this, 1)"
+                            style="background: rgba(255,255,255,0.2);
+                                   border: 2px solid rgba(255,255,255,0.3);
+                                   padding: 12px; border-radius: 8px;
+                                   cursor: pointer; color: white;">
+                        B) Correct answer
+                    </button>
+                </div>
+                <div class="quiz-feedback"
+                     style="margin-top: 10px; padding: 10px;
+                            border-radius: 5px; display: none;">
+                </div>
+            </div>
+
+            <!-- Quiz Score -->
+            <div id="quiz-score" style="text-align: center; display: none;">
+                <h4>🎉 Quiz Complete!</h4>
+                <p id="score-text"></p>
+                <button onclick="resetQuiz()">🔄 Try Again</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Quiz configuration
+let quizScore1 = 0;
+let answeredQuestions1 = new Set();
+const totalQuestions1 = 4; // Update based on number of questions
+
+function checkAnswer(button, questionNum) {
+    if (answeredQuestions.has(questionNum)) return;
+
+    const isCorrect = button.getAttribute('data-correct') === 'true';
+    const questionDiv = button.closest('.quiz-question');
+    const allOptions = questionDiv.querySelectorAll('.quiz-option');
+    const feedback = questionDiv.querySelector('.quiz-feedback');
+
+    allOptions.forEach(opt => opt.style.pointerEvents = 'none');
+
+    if (isCorrect) {
+        button.style.background = 'rgba(34, 197, 94, 0.8)';
+        button.style.borderColor = '#22c55e';
+        feedback.innerHTML = '✅ Correct!';
+        feedback.style.background = 'rgba(34, 197, 94, 0.3)';
+        feedback.style.display = 'block';
+        quizScore++;
+    } else {
+        button.style.background = 'rgba(239, 68, 68, 0.8)';
+        button.style.borderColor = '#ef4444';
+        allOptions.forEach(opt => {
+            if (opt.getAttribute('data-correct') === 'true') {
+                opt.style.background = 'rgba(34, 197, 94, 0.8)';
+                opt.style.borderColor = '#22c55e';
+            }
+        });
+        feedback.innerHTML = '❌ Incorrect. The correct answer is highlighted.';
+        feedback.style.background = 'rgba(239, 68, 68, 0.3)';
+        feedback.style.display = 'block';
+    }
+
+    answeredQuestions.add(questionNum);
+    if (answeredQuestions.size === totalQuestions) {
+        setTimeout(showScore, 1000);
+    }
+}
+
+function showScore() {
+    const percentage = (quizScore / totalQuestions) * 100;
+    const scoreDiv = document.getElementById('quiz-score');
+    const scoreText = document.getElementById('score-text');
+
+    let message = '';
+    if (percentage === 100) message = 'Perfect! 🌟';
+    else if (percentage >= 75) message = 'Great job! 👏';
+    else if (percentage >= 50) message = 'Good effort! 👍';
+    else message = 'Keep learning! 📚';
+
+    scoreText.innerHTML = `You scored ${quizScore}/${totalQuestions} - ${message}`;
+    scoreDiv.style.display = 'block';
+}
+
+function resetQuiz() {
+    quizScore = 0;
+    answeredQuestions.clear();
+    document.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.style.background = 'rgba(255,255,255,0.2)';
+        opt.style.borderColor = 'rgba(255,255,255,0.3)';
+        opt.style.pointerEvents = 'auto';
+    });
+    document.querySelectorAll('.quiz-feedback').forEach(f =>
+        f.style.display = 'none'
+    );
+    document.getElementById('quiz-score').style.display = 'none';
+}
+
+function switchQuizTab(tabName) {
+    document.querySelectorAll('.quiz-tab-content').forEach(tab =>
+        tab.style.display = 'none'
+    );
+    document.getElementById(tabName).style.display = 'block';
+}
+</script>
 </body>
 </html>
